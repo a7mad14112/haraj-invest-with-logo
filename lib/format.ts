@@ -1,0 +1,2 @@
+export function formatSAR(value: number | null | undefined){ if(value===null||value===undefined) return "غير محدد"; return new Intl.NumberFormat("ar-SA",{style:"currency",currency:"SAR",maximumFractionDigits:0}).format(value); }
+export function label(status:string){return ({pending:"قيد المراجعة",approved:"منشور",rejected:"مرفوض",closed:"مغلق",new:"جديدة",in_progress:"قيد المعالجة",resolved:"تم الحل",reviewed:"تمت المراجعة"} as Record<string,string>)[status]||status;}
