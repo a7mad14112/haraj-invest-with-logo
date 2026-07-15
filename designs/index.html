@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>حراج انفست · معرض التصاميم</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c1013; --bg-2:#12181c; --card:#161d22; --line:rgba(255,255,255,.09); --line-2:rgba(255,255,255,.16);
+    --fg:#e9eef0; --dim:#93a1a7; --mute:#63727a; --em:#12c27e; --em-d:#019969;
+    --disp:"Aref Ruqaa",serif; --sans:"IBM Plex Sans Arabic",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.7;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1240px;margin-inline:auto;padding-inline:26px}
+  .eyebrow{font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--em);font-weight:600}
+
+  header{padding:70px 0 40px;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  header::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% -10%,rgba(18,194,126,.14),transparent 70%)}
+  .brand{display:inline-flex;align-items:center;gap:12px;margin-bottom:28px;position:relative}
+  .brand svg{width:44px;height:44px}
+  .brand .wm{font-family:var(--disp);font-size:30px}
+  .brand .wm span{color:var(--em)}
+  header h1{font-family:var(--disp);font-weight:700;font-size:clamp(34px,5.5vw,60px);margin:0 0 14px;position:relative;line-height:1.2}
+  header p{color:var(--dim);font-size:18px;max-width:60ch;margin:0 auto;position:relative}
+  .meta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:26px;position:relative}
+  .chip{font-size:13px;color:var(--dim);border:1px solid var(--line-2);border-radius:999px;padding:7px 15px;display:inline-flex;gap:8px;align-items:center}
+  .chip b{color:var(--em)}
+
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;padding:56px 0 80px}
+  @media(max-width:900px){.grid{grid-template-columns:1fr}}
+  .item{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;transition:.3s;display:flex;flex-direction:column}
+  .item:hover{border-color:var(--line-2);transform:translateY(-4px);box-shadow:0 30px 70px -40px rgba(0,0,0,.8)}
+  .frame{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--bg-2);border-bottom:1px solid var(--line)}
+  .frame iframe{position:absolute;top:0;right:0;width:1440px;height:900px;border:0;transform:scale(.375);transform-origin:top right;pointer-events:none}
+  .frame .num{position:absolute;top:16px;right:16px;z-index:2;font-family:var(--disp);font-size:20px;width:44px;height:44px;border-radius:12px;background:rgba(12,16,19,.7);backdrop-filter:blur(6px);border:1px solid var(--line-2);display:grid;place-items:center;color:var(--em)}
+  .frame .open{position:absolute;inset:0;z-index:3;display:grid;place-items:center;opacity:0;transition:.25s;background:rgba(12,16,19,.35)}
+  .item:hover .frame .open{opacity:1}
+  .frame .open span{background:var(--em);color:#04150e;font-weight:700;padding:12px 22px;border-radius:12px;font-size:14px;display:inline-flex;gap:8px;align-items:center}
+  .body{padding:24px 26px 26px}
+  .body .tag{font-size:12px;color:var(--mute);letter-spacing:.05em}
+  .body h2{font-family:var(--disp);font-weight:700;font-size:28px;margin:6px 0 8px}
+  .body p{color:var(--dim);font-size:14.5px;margin:0 0 16px}
+  .swatches{display:flex;gap:6px;margin-bottom:6px}
+  .sw{width:22px;height:22px;border-radius:6px;border:1px solid var(--line-2)}
+  .body .foot{display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+  .tags{display:flex;gap:6px;flex-wrap:wrap}
+  .t{font-size:11.5px;color:var(--dim);background:var(--bg-2);border:1px solid var(--line);padding:4px 9px;border-radius:7px}
+  .go{color:var(--em);font-weight:600;font-size:14px;display:inline-flex;gap:6px;align-items:center}
+
+  footer{border-top:1px solid var(--line);padding:40px 0;text-align:center;color:var(--mute);font-size:14px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M15.5 3H7a4 4 0 0 0-4 4v8.5a4 4 0 0 0 1.17 2.83l9.5 9.5a3.2 3.2 0 0 0 4.53 0l8.83-8.83a3.2 3.2 0 0 0 0-4.53l-9.5-9.5A4 4 0 0 0 15.5 3Z" fill="#12c27e"/>
+        <circle cx="9.5" cy="9.5" r="2.1" fill="#0c1013"/>
+        <path d="M10.5 20.5 l4.5-4.5 2.5 2.5 L23 13" stroke="#0c1013" stroke-width="2.1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M20 12.6 L23.4 12.6 L23.4 16" stroke="#0c1013" stroke-width="2.1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="wm">حراج<span>انفست</span></span>
+    </div>
+    <div class="eyebrow">إعادة تصميم · Haraj-invest.com</div>
+    <h1>خمسة اتجاهات تصميمية<br>لسوق الفرص التجارية</h1>
+    <p>خمس رؤى مختلفة تمامًا للصفحة الرئيسية — لكلٍّ منها لغتها البصرية وطابعها وحركتها. استعرضها كاملةً واختر الاتجاه الأقرب لروح حراج انفست.</p>
+    <div class="meta">
+      <span class="chip"><b>5</b> تصاميم كاملة</span>
+      <span class="chip">عربي · <b>RTL</b></span>
+      <span class="chip">هوية الأخضر <b>#019969</b></span>
+      <span class="chip">بيانات حقيقية من المنصة</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="grid">
+
+    <a class="item" href="01-deal-terminal.html">
+      <div class="frame">
+        <span class="num">١</span>
+        <iframe src="01-deal-terminal.html" title="Deal Terminal" loading="lazy" scrolling="no"></iframe>
+        <div class="open"><span>افتح التصميم ↗</span></div>
+      </div>
+      <div class="body">
+        <div class="swatches"><i class="sw" style="background:#0c1013"></i><i class="sw" style="background:#12c27e"></i><i class="sw" style="background:#e7b24b"></i><i class="sw" style="background:#93a1a7"></i></div>
+        <div class="tag">داكن · مالي · بيانات</div>
+        <h2>غرفة الصفقات</h2>
+        <p>واجهة على طراز منصّات التداول: شريط صفقات حيّ، أرقام مؤشّرة تُحصى تصاعديًا، وجدول فرص بأسلوب دفتر الصفقات.</p>
+        <div class="foot">
+          <div class="tags"><span class="t">Ticker حيّ</span><span class="t">Count-up</span><span class="t">جدول صفقات</span></div>
+          <span class="go">معاينة ↗</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="item" href="02-editorial-growth.html">
+      <div class="frame">
+        <span class="num">٢</span>
+        <iframe src="02-editorial-growth.html" title="Editorial Growth" loading="lazy" scrolling="no"></iframe>
+        <div class="open"><span>افتح التصميم ↗</span></div>
+      </div>
+      <div class="body">
+        <div class="swatches"><i class="sw" style="background:#f5f6f1"></i><i class="sw" style="background:#0d5c3f"></i><i class="sw" style="background:#019969"></i><i class="sw" style="background:#b98a2e"></i></div>
+        <div class="tag">فاتح · مجلّة · خط عربي</div>
+        <h2>نُموّ</h2>
+        <p>معالجة تحريرية أنيقة بخط الرُقعة الكبير، مساحات بيضاء واسعة، وشبكة غير متماثلة تعطي إحساس المجلّة الراقية.</p>
+        <div class="foot">
+          <div class="tags"><span class="t">Aref Ruqaa</span><span class="t">Editorial</span><span class="t">مساحات واسعة</span></div>
+          <span class="go">معاينة ↗</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="item" href="03-the-tag.html">
+      <div class="frame">
+        <span class="num">٣</span>
+        <iframe src="03-the-tag.html" title="The Tag" loading="lazy" scrolling="no"></iframe>
+        <div class="open"><span>افتح التصميم ↗</span></div>
+      </div>
+      <div class="body">
+        <div class="swatches"><i class="sw" style="background:#f3ece0"></i><i class="sw" style="background:#019969"></i><i class="sw" style="background:#e2603f"></i><i class="sw" style="background:#d99a2b"></i></div>
+        <div class="tag">دافئ · مرِح · استعارة الوسم</div>
+        <h2>الوَسْم</h2>
+        <p>يستلهم من شعار المنصّة (وسم السعر) — بطاقات معلّقة على خيوط، ملمس ورقي، ودفء سوق الحراج بلمسة عصرية.</p>
+        <div class="foot">
+          <div class="tags"><span class="t">بطاقات معلّقة</span><span class="t">Kraft</span><span class="t">هوية الشعار</span></div>
+          <span class="go">معاينة ↗</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="item" href="04-neo-platform.html">
+      <div class="frame">
+        <span class="num">٤</span>
+        <iframe src="04-neo-platform.html" title="Neo Platform" loading="lazy" scrolling="no"></iframe>
+        <div class="open"><span>افتح التصميم ↗</span></div>
+      </div>
+      <div class="body">
+        <div class="swatches"><i class="sw" style="background:#07110d"></i><i class="sw" style="background:#1fd18a"></i><i class="sw" style="background:#7ff5c4"></i><i class="sw" style="background:#0bb673"></i></div>
+        <div class="tag">داكن زجاجي · حركة · فخامة</div>
+        <h2>المنصّة</h2>
+        <p>أسلوب SaaS عصري: أسطح زجاجية، توهّج أخضر، مخطّط نموّ متحرّك على Canvas، وشبكة Bento للمميزات والأرقام.</p>
+        <div class="foot">
+          <div class="tags"><span class="t">Canvas متحرّك</span><span class="t">Glassmorphism</span><span class="t">Bento</span></div>
+          <span class="go">معاينة ↗</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="item" href="05-split-market.html">
+      <div class="frame">
+        <span class="num">٥</span>
+        <iframe src="05-split-market.html" title="Split Market" loading="lazy" scrolling="no"></iframe>
+        <div class="open"><span>افتح التصميم ↗</span></div>
+      </div>
+      <div class="body">
+        <div class="swatches"><i class="sw" style="background:#fbfaf6"></i><i class="sw" style="background:#019969"></i><i class="sw" style="background:#013525"></i><i class="sw" style="background:#d99521"></i></div>
+        <div class="tag">جريء · مقسوم · طاقة</div>
+        <h2>السوق</h2>
+        <p>بطل مقسوم إلى نصفين: عنوان جريء يقابله كرت فرصة حيّ، بمزيج الأخضر والذهبي وطاقة سوقٍ نابض بالحركة.</p>
+        <div class="foot">
+          <div class="tags"><span class="t">Split-screen</span><span class="t">أخضر + ذهبي</span><span class="t">Feed حيّ</span></div>
+          <span class="go">معاينة ↗</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">حراج انفست · معرض إعادة التصميم · 2026 — افتح أي تصميم لاستعراضه بالحجم الكامل</div>
+</footer>
+</body>
+</html>

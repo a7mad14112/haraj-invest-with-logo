@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>حراج انفست · نمو</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f5f6f1; --paper-2:#eef0e8; --card:#fffffe;
+    --ink:#1d2420; --ink-2:#41504a; --mute:#7a887f;
+    --line:#dfe2d8; --line-2:#cdd2c5;
+    --forest:#0d5c3f; --em:#019969; --em-2:#12a877; --gold:#b98a2e;
+    --disp:"Aref Ruqaa",serif;
+    --sans:"Tajawal",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .disp{font-family:var(--disp);font-weight:700;line-height:1.15;text-wrap:balance}
+  .wrap{max-width:1180px;margin-inline:auto;padding-inline:28px}
+  .eyebrow{font-family:var(--sans);font-weight:700;font-size:12.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--em)}
+  .rule{height:1px;background:var(--line-2)}
+
+  nav{position:sticky;top:0;z-index:40;background:rgba(245,246,241,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand svg{width:36px;height:36px}
+  .brand .wm{font-family:var(--disp);font-weight:700;font-size:26px;color:var(--ink);line-height:1}
+  .nav-links{display:flex;gap:34px;font-size:15px;color:var(--ink-2);font-weight:500}
+  .nav-links a{position:relative;padding-bottom:3px}
+  .nav-links a::after{content:"";position:absolute;inset:auto 0 0 0;height:1.5px;background:var(--em);transform:scaleX(0);transition:.25s;transform-origin:right}
+  .nav-links a:hover::after{transform:scaleX(1)}
+  .btn{font-family:var(--sans);font-weight:700;font-size:15px;border-radius:999px;padding:12px 24px;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:9px;border:1.5px solid transparent}
+  .btn-p{background:var(--forest);color:#fff}
+  .btn-p:hover{background:var(--em);transform:translateY(-1px)}
+  .btn-o{border-color:var(--line-2);color:var(--ink)}
+  .btn-o:hover{border-color:var(--forest)}
+  @media(max-width:860px){.nav-links{display:none}}
+
+  /* hero: editorial asymmetric */
+  .hero{padding:70px 0 40px;position:relative}
+  .hero-grid{display:grid;grid-template-columns:1.4fr .95fr;gap:56px;align-items:end}
+  .hero .kick{display:flex;align-items:center;gap:14px;margin-bottom:26px}
+  .hero .kick .line{flex:1;height:1px;background:var(--line-2);max-width:120px}
+  .hero h1{font-size:clamp(52px,8.5vw,116px);letter-spacing:-.01em;margin:0}
+  .hero h1 .g{color:var(--em)}
+  .hero h1 .out{-webkit-text-stroke:1.6px var(--forest);color:transparent}
+  .hero .lede{font-size:19px;color:var(--ink-2);max-width:40ch;margin:30px 0 34px;line-height:1.85}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-aside{border-right:1px solid var(--line-2);padding-right:32px}
+  .metric{padding:22px 0;border-bottom:1px solid var(--line)}
+  .metric:first-child{padding-top:0}
+  .metric:last-child{border-bottom:0}
+  .metric .n{font-family:var(--disp);font-size:46px;line-height:1;color:var(--forest)}
+  .metric .n small{font-size:22px;color:var(--em)}
+  .metric .l{font-size:14px;color:var(--mute);margin-top:6px}
+  @media(max-width:860px){.hero-grid{grid-template-columns:1fr;gap:40px}.hero-aside{border-right:0;padding-right:0;border-top:1px solid var(--line-2);padding-top:20px}}
+
+  /* growth ribbon */
+  .ribbon{margin:36px 0 0;background:var(--forest);color:#eafff5;border-radius:22px;padding:26px 34px;display:flex;align-items:center;justify-content:space-between;gap:30px;overflow:hidden;position:relative}
+  .ribbon .txt{font-family:var(--disp);font-size:clamp(22px,3vw,34px);white-space:nowrap}
+  .ribbon svg{flex:1;min-width:120px;height:56px}
+
+  section{padding:96px 0}
+  .sec-kick{display:flex;align-items:baseline;gap:16px;margin-bottom:12px}
+  .sec-kick .no{font-family:var(--disp);font-size:20px;color:var(--em)}
+  h2.sec{font-family:var(--disp);font-size:clamp(36px,5vw,60px);margin:0 0 8px;letter-spacing:-.01em}
+  .sec-sub{color:var(--ink-2);font-size:17px;max-width:56ch;margin-bottom:48px}
+
+  /* sectors editorial list */
+  .cats{display:grid;gap:0;border-top:1px solid var(--line-2)}
+  .cat{display:grid;grid-template-columns:auto 1fr auto auto;gap:26px;align-items:center;padding:26px 8px;border-bottom:1px solid var(--line);transition:.25s;cursor:pointer}
+  .cat:hover{background:var(--card);padding-inline:22px;border-radius:14px}
+  .cat .idx{font-family:var(--disp);font-size:22px;color:var(--mute);width:44px}
+  .cat h3{font-family:var(--disp);font-size:30px;margin:0;font-weight:400}
+  .cat .desc{color:var(--mute);font-size:14.5px}
+  .cat .count{font-family:var(--disp);font-size:34px;color:var(--forest)}
+  .cat .count small{font-size:14px;color:var(--mute);font-family:var(--sans)}
+  .cat .arw{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--line-2);display:grid;place-items:center;color:var(--ink-2);transition:.25s}
+  .cat:hover .arw{background:var(--forest);border-color:var(--forest);color:#fff;transform:rotate(-45deg)}
+  @media(max-width:720px){.cat{grid-template-columns:auto 1fr auto}.cat .desc,.cat .idx{display:none}}
+
+  /* featured projects mag cards */
+  .feat{display:grid;grid-template-columns:1.5fr 1fr;gap:28px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden;display:flex;flex-direction:column;transition:.28s}
+  .card:hover{box-shadow:0 30px 60px -30px rgba(13,92,63,.28);transform:translateY(-4px)}
+  .card .top{padding:32px 32px 0;flex:1}
+  .card .badges{display:flex;gap:8px;margin-bottom:18px}
+  .badge{font-size:12.5px;font-weight:700;padding:6px 13px;border-radius:999px;background:var(--paper-2);color:var(--ink-2)}
+  .badge.f{background:#fdf3dd;color:var(--gold)}
+  .card h3{font-family:var(--disp);font-size:clamp(26px,3vw,38px);font-weight:400;margin:0 0 14px;line-height:1.25}
+  .card p{color:var(--ink-2);font-size:15.5px;margin:0}
+  .card .chart{height:80px;margin-top:20px}
+  .card .foot{display:flex;justify-content:space-between;align-items:center;padding:24px 32px;border-top:1px solid var(--line);margin-top:24px}
+  .card .price .k{font-size:12.5px;color:var(--mute)}
+  .card .price .v{font-family:var(--disp);font-size:30px;color:var(--forest);line-height:1}
+  .card .price .v small{font-size:14px;color:var(--em);font-family:var(--sans)}
+  .card.small h3{font-size:26px}
+  .metricsrow{display:flex;gap:26px;margin-top:18px}
+  .mm .k{font-size:12px;color:var(--mute)}
+  .mm .v{font-family:var(--disp);font-size:24px;color:var(--ink)}
+  @media(max-width:860px){.feat{grid-template-columns:1fr}}
+
+  /* process editorial */
+  .proc{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:1px solid var(--line-2);border-radius:24px;overflow:hidden;background:var(--card)}
+  .pstep{padding:40px 34px;border-left:1px solid var(--line)}
+  .pstep:first-child{border-left:0}
+  .pstep .no{font-family:var(--disp);font-size:52px;color:var(--em);line-height:1;margin-bottom:20px;opacity:.9}
+  .pstep h3{font-family:var(--disp);font-size:26px;font-weight:400;margin:0 0 10px}
+  .pstep p{color:var(--ink-2);font-size:15px;margin:0}
+  @media(max-width:720px){.proc{grid-template-columns:1fr}.pstep{border-left:0;border-top:1px solid var(--line)}.pstep:first-child{border-top:0}}
+
+  /* pull quote / cta */
+  .cta{text-align:center;padding:110px 0}
+  .cta .q{font-family:var(--disp);font-size:clamp(34px,6vw,74px);line-height:1.25;max-width:16ch;margin:0 auto 34px;letter-spacing:-.01em}
+  .cta .q .g{color:var(--em)}
+  .cta .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  footer{border-top:1px solid var(--line-2);padding:56px 0}
+  .foot-in{display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px}
+  .foot-in .wm{font-family:var(--disp);font-size:30px;margin-bottom:10px}
+  .foot-in p{color:var(--mute);font-size:14.5px;max-width:30ch;margin:0}
+  .foot-col h4{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin:0 0 16px}
+  .foot-col a{display:block;color:var(--ink-2);font-size:15px;padding:5px 0}
+  .foot-col a:hover{color:var(--em)}
+  .foot-bottom{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);color:var(--mute);font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  @media(max-width:720px){.foot-in{grid-template-columns:1fr 1fr}}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="brand" href="#">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M15.5 3H7a4 4 0 0 0-4 4v8.5a4 4 0 0 0 1.17 2.83l9.5 9.5a3.2 3.2 0 0 0 4.53 0l8.83-8.83a3.2 3.2 0 0 0 0-4.53l-9.5-9.5A4 4 0 0 0 15.5 3Z" fill="#0d5c3f"/>
+        <circle cx="9.5" cy="9.5" r="2.1" fill="#f5f6f1"/>
+        <path d="M10.5 20.5 l4.5-4.5 2.5 2.5 L23 13" stroke="#f5f6f1" stroke-width="2.1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M20 12.6 L23.4 12.6 L23.4 16" stroke="#f5f6f1" stroke-width="2.1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="wm">حراج انفست</span>
+    </a>
+    <div class="nav-links">
+      <a href="#cats">القطاعات</a>
+      <a href="#feat">الفرص</a>
+      <a href="#how">كيف تعمل</a>
+      <a href="#">عن المنصة</a>
+    </div>
+    <a class="btn btn-p" href="#">أضف مشروعك</a>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div class="kick">
+    <span class="eyebrow">سوق الفرص والمشاريع</span>
+    <span class="line"></span>
+  </div>
+  <div class="hero-grid">
+    <div>
+      <h1 class="disp">حيث تُزهر<br><span class="g">المشاريع</span> <span class="out">فرصًا</span>.</h1>
+      <p class="lede">حراج انفست منصة عربية تجمع أصحاب المشاريع بالمستثمرين في سوق منظّم للفرص التجارية — كل فرصة مراجعة، مسعّرة، وجاهزة للحديث الجادّ.</p>
+      <div class="hero-cta">
+        <a class="btn btn-p" href="#feat">اكتشف الفرص
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M11 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn btn-o" href="#">اعرض مشروعك</a>
+      </div>
+    </div>
+    <aside class="hero-aside">
+      <div class="metric"><div class="n">60<small>+</small></div><div class="l">فرصة تجارية نشطة</div></div>
+      <div class="metric"><div class="n">4<small> قطاعات</small></div><div class="l">تقنية · تجارة · مطاعم · صناعة</div></div>
+      <div class="metric"><div class="n">100<small>%</small></div><div class="l">مراجعة يدوية قبل النشر</div></div>
+    </aside>
+  </div>
+
+  <div class="ribbon">
+    <span class="txt">نُموٌّ يبدأ بعرضٍ واحد</span>
+    <svg viewBox="0 0 400 56" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,48 C60,44 90,30 140,32 S220,20 260,14 320,6 400,2" fill="none" stroke="#5ce0a8" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="400" cy="2" r="4.5" fill="#eafff5"/>
+    </svg>
+    <span class="txt">◂</span>
+  </div>
+</header>
+
+<!-- sectors -->
+<section class="wrap" id="cats">
+  <div class="sec-kick"><span class="no">٠١</span><span class="eyebrow">القطاعات</span></div>
+  <h2 class="sec">استكشف حسب القطاع</h2>
+  <p class="sec-sub">من المقاهي القائمة إلى المنصات التقنية الناشئة — تصفّح الفرص في القطاعات الأكثر حيوية في السوق السعودي.</p>
+  <div class="cats">
+    <a class="cat"><span class="idx">٠١</span><div><h3>تقنية</h3></div><div class="desc">منصات ومنتجات رقمية قابلة للتوسّع</div><div class="count">18<small> فرصة</small></div><div class="arw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H8M17 7v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></a>
+    <a class="cat"><span class="idx">٠٢</span><div><h3>تجارة إلكترونية</h3></div><div class="desc">متاجر قائمة بقنوات تسويق جاهزة</div><div class="count">21<small> فرصة</small></div><div class="arw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H8M17 7v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></a>
+    <a class="cat"><span class="idx">٠٣</span><div><h3>مطاعم ومقاهي</h3></div><div class="desc">أصول تشغيلية بقاعدة عملاء ثابتة</div><div class="count">12<small> فرصة</small></div><div class="arw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H8M17 7v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></a>
+    <a class="cat"><span class="idx">٠٤</span><div><h3>صناعة</h3></div><div class="desc">مصانع وخطوط إنتاج بعقود توريد</div><div class="count">9<small> فرص</small></div><div class="arw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H8M17 7v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></a>
+  </div>
+</section>
+
+<!-- featured -->
+<section class="wrap" id="feat">
+  <div class="sec-kick"><span class="no">٠٢</span><span class="eyebrow">فرص مختارة</span></div>
+  <h2 class="sec">مشاريع تستحق نظرة</h2>
+  <p class="sec-sub">فرص مراجعة يدويًا، بأرقام واضحة عن الإيرادات والأرباح — لتتخذ قرارك بثقة.</p>
+  <div class="feat">
+    <article class="card">
+      <div class="top">
+        <div class="badges"><span class="badge">صناعة</span><span class="badge">الدمام</span><span class="badge f">★ مميز</span></div>
+        <h3>مصنع صغير للمنتجات البلاستيكية</h3>
+        <p>فرصة شراكة تشغيلية في مصنع قائم مع عقود توريد ثابتة وإمكانية توسّع في المنطقة الشرقية.</p>
+        <div class="chart">
+          <svg width="100%" height="100%" viewBox="0 0 500 80" preserveAspectRatio="none">
+            <defs><linearGradient id="e1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#019969" stop-opacity=".22"/><stop offset="1" stop-color="#019969" stop-opacity="0"/></linearGradient></defs>
+            <path d="M0,66 L70,60 L140,64 L210,44 L280,48 L350,30 L420,20 L500,8 L500,80 L0,80Z" fill="url(#e1)"/>
+            <path d="M0,66 L70,60 L140,64 L210,44 L280,48 L350,30 L420,20 L500,8" fill="none" stroke="#019969" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="metricsrow">
+          <div class="mm"><div class="k">الإيراد السنوي</div><div class="v">2.16<small style="font-size:14px;color:var(--mute)">M</small></div></div>
+          <div class="mm"><div class="k">الربح السنوي</div><div class="v">420K</div></div>
+          <div class="mm"><div class="k">النوع</div><div class="v" style="font-size:20px">شراكة</div></div>
+        </div>
+      </div>
+      <div class="foot">
+        <div class="price"><div class="k">قيمة الصفقة</div><div class="v">1,200,000 <small>ر.س</small></div></div>
+        <a class="btn btn-p" href="#">التفاصيل</a>
+      </div>
+    </article>
+
+    <article class="card small">
+      <div class="top">
+        <div class="badges"><span class="badge">مطاعم</span><span class="badge f">★ مميز</span></div>
+        <h3>مقهى في شمال الرياض</h3>
+        <p>مشروع قائم بتجهيزات كاملة وقاعدة عملاء ثابتة، مناسب لمستثمر يبحث عن أصل تشغيلي جاهز.</p>
+        <div class="metricsrow">
+          <div class="mm"><div class="k">الإيراد</div><div class="v">780K</div></div>
+          <div class="mm"><div class="k">الربح</div><div class="v">180K</div></div>
+        </div>
+      </div>
+      <div class="foot">
+        <div class="price"><div class="k">قيمة الصفقة</div><div class="v">450,000 <small>ر.س</small></div></div>
+        <a class="btn btn-o" href="#">التفاصيل</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- how -->
+<section class="wrap" id="how">
+  <div class="sec-kick"><span class="no">٠٣</span><span class="eyebrow">آلية العمل</span></div>
+  <h2 class="sec">ثلاث خطوات نحو الصفقة</h2>
+  <p class="sec-sub"></p>
+  <div class="proc">
+    <div class="pstep"><div class="no">٠١</div><h3>اعرض فرصتك</h3><p>املأ نموذجًا منظّمًا ببيانات مشروعك: القطاع، القيمة، الإيرادات والأرباح.</p></div>
+    <div class="pstep"><div class="no">٠٢</div><h3>نراجعها بعناية</h3><p>يتأكد فريقنا من دقة المعلومات قبل نشرها على شبكة المستثمرين.</p></div>
+    <div class="pstep"><div class="no">٠٣</div><h3>استقبل الاهتمام</h3><p>تصلك طلبات المستثمرين الجادّين مباشرةً، وتُدير الحوار من لوحتك.</p></div>
+  </div>
+</section>
+
+<!-- cta -->
+<div class="wrap"><div class="rule"></div></div>
+<section class="cta wrap">
+  <p class="q disp">فرصتك القادمة على بُعد <span class="g">إعلانٍ</span> واحد.</p>
+  <div class="row">
+    <a class="btn btn-p" href="#">أضف مشروعك مجانًا</a>
+    <a class="btn btn-o" href="#">تصفّح كل الفرص</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-in">
+      <div>
+        <div class="wm disp">حراج انفست</div>
+        <p>سوق منظّم للفرص التجارية والمشاريع، يجمع أصحاب المشاريع بالمستثمرين في السعودية.</p>
+      </div>
+      <div class="foot-col"><h4>المنصة</h4><a href="#">الفرص</a><a href="#">القطاعات</a><a href="#">لوحة التحكم</a></div>
+      <div class="foot-col"><h4>روابط</h4><a href="#">الشروط والأحكام</a><a href="#">سياسة الخصوصية</a><a href="#">تواصل معنا</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 حراج انفست · جميع الحقوق محفوظة</span>
+      <span>صُنع بعناية في السعودية</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

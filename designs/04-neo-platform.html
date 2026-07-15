@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>حراج انفست · المنصة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Almarai:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#07110d; --bg-2:#0a1712; --glass:rgba(22,40,32,.55); --glass-2:rgba(30,52,42,.4);
+    --line:rgba(120,220,175,.14); --line-2:rgba(120,220,175,.26);
+    --fg:#e8f5ee; --fg-dim:#9fbcae; --fg-mute:#688577;
+    --em:#1fd18a; --em-2:#0bb673; --em-glow:rgba(31,209,138,.5); --mint:#7ff5c4;
+    --disp:"Almarai",system-ui,sans-serif;
+    --sans:"IBM Plex Sans Arabic",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{font-family:var(--disp);font-weight:800;line-height:1.12;text-wrap:balance;margin:0}
+  .wrap{max-width:1200px;margin-inline:auto;padding-inline:24px}
+  .eyebrow{font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--mint);font-weight:600}
+  .num{font-variant-numeric:tabular-nums}
+
+  /* ambient glow bg */
+  .aura{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+  .aura b{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5}
+  .aura b:nth-child(1){width:520px;height:520px;background:radial-gradient(circle,rgba(31,209,138,.4),transparent 70%);top:-160px;right:-80px}
+  .aura b:nth-child(2){width:420px;height:420px;background:radial-gradient(circle,rgba(11,182,115,.28),transparent 70%);top:40%;left:-140px}
+  .aura::after{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:58px 58px;opacity:.5;mask-image:radial-gradient(ellipse 90% 70% at 60% 10%,#000,transparent 80%)}
+
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(16px);background:rgba(7,17,13,.7);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:11px}
+  .brand svg{width:34px;height:34px;filter:drop-shadow(0 0 8px var(--em-glow))}
+  .brand .wm{font-family:var(--disp);font-weight:800;font-size:20px}
+  .brand .wm span{color:var(--em)}
+  .nav-links{display:flex;gap:30px;font-size:14.5px;color:var(--fg-dim);font-weight:500}
+  .nav-links a:hover{color:var(--mint)}
+  .btn{font-family:var(--sans);font-weight:700;font-size:14px;border-radius:12px;padding:11px 20px;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:8px;border:1px solid transparent}
+  .btn-p{background:linear-gradient(135deg,var(--em),var(--em-2));color:#03150d;box-shadow:0 0 0 1px rgba(255,255,255,.1) inset,0 8px 30px -8px var(--em-glow)}
+  .btn-p:hover{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(255,255,255,.15) inset,0 12px 40px -10px var(--em-glow)}
+  .btn-g{border-color:var(--line-2);color:var(--fg);background:var(--glass)}
+  .btn-g:hover{border-color:var(--em);color:var(--mint)}
+  @media(max-width:840px){.nav-links{display:none}}
+
+  /* hero */
+  .hero{padding:88px 0 60px;text-align:center;position:relative}
+  .badge{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:600;color:var(--mint);background:var(--glass);border:1px solid var(--line-2);border-radius:999px;padding:7px 16px;margin-bottom:30px}
+  .badge .d{width:7px;height:7px;border-radius:50%;background:var(--em);box-shadow:0 0 10px var(--em)}
+  .hero h1{font-size:clamp(40px,6.6vw,84px);letter-spacing:-.02em}
+  .hero h1 .grad{background:linear-gradient(120deg,var(--mint),var(--em) 60%,var(--em-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{color:var(--fg-dim);font-size:19px;max-width:56ch;margin:26px auto 34px}
+  .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  /* live chart panel */
+  .panel{margin:56px auto 0;max-width:960px;background:var(--glass);border:1px solid var(--line-2);border-radius:24px;padding:6px;backdrop-filter:blur(20px);box-shadow:0 40px 100px -40px rgba(0,0,0,.8)}
+  .panel-bar{display:flex;align-items:center;justify-content:space-between;padding:16px 20px}
+  .panel-bar .l{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--fg-dim)}
+  .win{display:flex;gap:6px}
+  .win i{width:11px;height:11px;border-radius:50%;background:var(--line-2)}
+  .panel-body{background:rgba(4,11,8,.6);border-radius:18px;padding:24px;position:relative}
+  .panel-stats{display:flex;gap:28px;margin-bottom:14px;flex-wrap:wrap}
+  .ps .k{font-size:12px;color:var(--fg-mute)}
+  .ps .v{font-family:var(--disp);font-weight:800;font-size:26px}
+  .ps .v.up{color:var(--em)}
+  canvas{display:block;width:100%;height:220px}
+
+  section{padding:96px 0;position:relative}
+  .sec-head{text-align:center;margin-bottom:54px}
+  .sec-head h2{font-size:clamp(30px,4.4vw,50px);letter-spacing:-.02em;margin-bottom:12px}
+  .sec-head p{color:var(--fg-dim);font-size:16.5px;max-width:52ch;margin:0 auto}
+
+  /* bento grid */
+  .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;grid-auto-rows:minmax(140px,auto)}
+  .cell{background:var(--glass);border:1px solid var(--line);border-radius:20px;padding:26px;position:relative;overflow:hidden;transition:.28s;backdrop-filter:blur(10px)}
+  .cell:hover{border-color:var(--line-2);transform:translateY(-3px);background:var(--glass-2)}
+  .cell .ic{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,rgba(31,209,138,.2),rgba(31,209,138,.05));display:grid;place-items:center;color:var(--em);margin-bottom:16px}
+  .cell h3{font-size:19px;margin-bottom:8px}
+  .cell p{color:var(--fg-dim);font-size:14.5px;margin:0}
+  .c-lg{grid-column:span 3}.c-md{grid-column:span 3}.c-sm{grid-column:span 2}.c-wide{grid-column:span 4}
+  .cell .big{font-family:var(--disp);font-weight:800;font-size:clamp(38px,5vw,60px);background:linear-gradient(120deg,var(--mint),var(--em));-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+  .cell .spark{position:absolute;inset:auto 0 0 0;height:60px;opacity:.7}
+  @media(max-width:900px){.bento{grid-template-columns:repeat(2,1fr)}.c-lg,.c-md,.c-sm,.c-wide{grid-column:span 1}.c-wide{grid-column:span 2}}
+
+  /* sectors */
+  .sectors{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .sec{background:var(--glass);border:1px solid var(--line);border-radius:18px;padding:24px;transition:.25s;cursor:pointer;position:relative;overflow:hidden}
+  .sec:hover{border-color:var(--em);transform:translateY(-3px)}
+  .sec .ic{width:46px;height:46px;border-radius:13px;background:rgba(31,209,138,.12);display:grid;place-items:center;color:var(--em);margin-bottom:16px}
+  .sec h3{font-size:18px}
+  .sec .cnt{color:var(--fg-dim);font-size:14px;margin-top:4px}
+  .sec .cnt b{color:var(--mint)}
+  .sec .glow{position:absolute;bottom:-40px;left:-40px;width:120px;height:120px;background:radial-gradient(circle,var(--em-glow),transparent 70%);opacity:0;transition:.3s}
+  .sec:hover .glow{opacity:.4}
+  @media(max-width:840px){.sectors{grid-template-columns:1fr 1fr}}
+
+  /* deals */
+  .deals{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .deal{background:var(--glass);border:1px solid var(--line);border-radius:20px;padding:24px;transition:.28s;backdrop-filter:blur(10px)}
+  .deal:hover{border-color:var(--line-2);transform:translateY(-4px);box-shadow:0 24px 60px -30px rgba(0,0,0,.7)}
+  .deal .row1{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+  .chip{font-size:12px;font-weight:600;padding:5px 11px;border-radius:8px;background:rgba(31,209,138,.12);color:var(--em)}
+  .chip.g{background:rgba(231,178,75,.14);color:#e7b24b}
+  .deal h3{font-size:19px;margin-bottom:14px}
+  .deal .sp{height:52px;margin:14px 0}
+  .deal .pr{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid var(--line);padding-top:16px}
+  .deal .pr .v{font-family:var(--disp);font-weight:800;font-size:24px}
+  .deal .pr .k{font-size:12px;color:var(--fg-mute)}
+  .deal .pr .roi{font-size:13px;color:var(--em);font-weight:600}
+  @media(max-width:840px){.deals{grid-template-columns:1fr}}
+
+  /* cta */
+  .cta{position:relative;border:1px solid var(--line-2);border-radius:28px;padding:70px 40px;text-align:center;overflow:hidden;background:radial-gradient(120% 160% at 50% 0%,rgba(31,209,138,.16),transparent 55%),var(--glass);backdrop-filter:blur(14px)}
+  .cta h2{font-size:clamp(30px,4.6vw,54px);letter-spacing:-.02em;margin-bottom:16px}
+  .cta p{color:var(--fg-dim);font-size:17px;max-width:52ch;margin:0 auto 30px}
+  .cta .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  footer{border-top:1px solid var(--line);padding:48px 0;color:var(--fg-mute)}
+  .foot-in{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+  .foot-links{display:flex;gap:24px;font-size:14px;color:var(--fg-dim)}
+  .foot-links a:hover{color:var(--mint)}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="aura" aria-hidden="true"><b></b><b></b></div>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="brand" href="#">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M15.5 3H7a4 4 0 0 0-4 4v8.5a4 4 0 0 0 1.17 2.83l9.5 9.5a3.2 3.2 0 0 0 4.53 0l8.83-8.83a3.2 3.2 0 0 0 0-4.53l-9.5-9.5A4 4 0 0 0 15.5 3Z" fill="#1fd18a"/>
+        <circle cx="9.5" cy="9.5" r="2.1" fill="#07110d"/>
+        <path d="M10.5 20.5 l4.5-4.5 2.5 2.5 L23 13" stroke="#07110d" stroke-width="2.1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M20 12.6 L23.4 12.6 L23.4 16" stroke="#07110d" stroke-width="2.1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="wm">حراج<span>انفست</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#feat">المميزات</a>
+      <a href="#sectors">القطاعات</a>
+      <a href="#deals">الفرص</a>
+      <a href="#">المستثمرون</a>
+    </div>
+    <div style="display:flex;gap:10px">
+      <a class="btn btn-g" href="#">دخول</a>
+      <a class="btn btn-p" href="#">ابدأ الآن</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <span class="badge"><span class="d"></span> منصة الفرص التجارية · مباشر</span>
+  <h1>استثمر في <span class="grad">النموّ</span>،<br>لا في الوعود.</h1>
+  <p>منصة رقمية تربط أصحاب المشاريع بالمستثمرين عبر سوق منظّم — بيانات موثوقة، فرص مراجعة، وقرار أوضح.</p>
+  <div class="hero-cta">
+    <a class="btn btn-p" href="#deals">استكشف الفرص
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M11 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <a class="btn btn-g" href="#">اعرض مشروعك</a>
+  </div>
+
+  <!-- live panel -->
+  <div class="panel">
+    <div class="panel-bar">
+      <div class="l"><span class="win"><i></i><i></i><i></i></span> مؤشر نموّ الفرص · حراج انفست</div>
+      <div class="l">آخر 12 شهرًا</div>
+    </div>
+    <div class="panel-body">
+      <div class="panel-stats">
+        <div class="ps"><div class="k">إجمالي قيمة الفرص</div><div class="v num">4.3M ر.س</div></div>
+        <div class="ps"><div class="k">فرص نشطة</div><div class="v up num">60+</div></div>
+        <div class="ps"><div class="k">متوسط العائد</div><div class="v up num">▲ 28%</div></div>
+      </div>
+      <canvas id="chart" width="900" height="220"></canvas>
+    </div>
+  </div>
+</header>
+
+<!-- bento features -->
+<section class="wrap" id="feat">
+  <div class="sec-head">
+    <span class="eyebrow">لماذا حراج انفست</span>
+    <h2 style="margin-top:14px">منصة بُنيت للثقة</h2>
+    <p>كل ما تحتاجه لعرض فرصتك أو اكتشاف صفقتك القادمة، في مكان واحد.</p>
+  </div>
+  <div class="bento">
+    <div class="cell c-lg">
+      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7z"/></svg></div>
+      <h3>مراجعة قبل النشر</h3>
+      <p>يُدقّق فريقنا كل فرصة قبل عرضها على المستثمرين، لتصلك بيانات موثوقة فقط.</p>
+    </div>
+    <div class="cell c-md">
+      <div class="big num">100%</div>
+      <p style="margin-top:8px">من الفرص مراجعة يدويًا قبل أن تظهر في السوق.</p>
+    </div>
+    <div class="cell c-sm">
+      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg></div>
+      <h3>بحث ذكي</h3>
+      <p>فلترة حسب القطاع، المدينة، والقيمة.</p>
+    </div>
+    <div class="cell c-wide" style="display:flex;align-items:center;justify-content:space-between;gap:20px">
+      <div>
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></div>
+        <h3>بيانات مالية واضحة</h3>
+        <p>الإيرادات والأرباح والقيمة معروضة بشفافية لكل فرصة.</p>
+      </div>
+      <svg width="180" height="70" viewBox="0 0 180 70" style="flex-shrink:0">
+        <path d="M0,58 L30,52 L60,54 L90,38 L120,42 L150,22 L180,10" fill="none" stroke="#1fd18a" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="180" cy="10" r="4" fill="#7ff5c4"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- sectors -->
+<section class="wrap" id="sectors">
+  <div class="sec-head">
+    <span class="eyebrow">القطاعات</span>
+    <h2 style="margin-top:14px">استكشف حسب القطاع</h2>
+  </div>
+  <div class="sectors">
+    <a class="sec"><span class="glow"></span><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h3>تقنية</h3><div class="cnt"><b>18</b> فرصة</div></a>
+    <a class="sec"><span class="glow"></span><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></div><h3>تجارة إلكترونية</h3><div class="cnt"><b>21</b> فرصة</div></a>
+    <a class="sec"><span class="glow"></span><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4Z"/><path d="M6 1v3M10 1v3M14 1v3"/></svg></div><h3>مطاعم ومقاهي</h3><div class="cnt"><b>12</b> فرصة</div></a>
+    <a class="sec"><span class="glow"></span><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M4 20V8l6-4 6 4M8 20v-6h4v6M18 20V11l3 2v7"/></svg></div><h3>صناعة</h3><div class="cnt"><b>9</b> فرص</div></a>
+  </div>
+</section>
+
+<!-- deals -->
+<section class="wrap" id="deals">
+  <div class="sec-head">
+    <span class="eyebrow">فرص مختارة</span>
+    <h2 style="margin-top:14px">صفقات نشطة الآن</h2>
+  </div>
+  <div class="deals">
+    <article class="deal">
+      <div class="row1"><span class="chip g">★ صناعة</span><span style="font-size:13px;color:var(--fg-mute)">الدمام</span></div>
+      <h3>مصنع للمنتجات البلاستيكية</h3>
+      <div class="sp"><svg width="100%" height="100%" viewBox="0 0 300 52" preserveAspectRatio="none"><path d="M0,44 L50,40 L100,42 L150,28 L200,30 L250,14 L300,6" fill="none" stroke="#1fd18a" stroke-width="2.2" stroke-linecap="round"/></svg></div>
+      <div class="pr"><div><div class="k">قيمة الصفقة</div><div class="v num">1.2M</div></div><div class="roi">▲ ربح 420K</div></div>
+    </article>
+    <article class="deal">
+      <div class="row1"><span class="chip g">★ مطاعم</span><span style="font-size:13px;color:var(--fg-mute)">الرياض</span></div>
+      <h3>مقهى في شمال الرياض</h3>
+      <div class="sp"><svg width="100%" height="100%" viewBox="0 0 300 52" preserveAspectRatio="none"><path d="M0,40 L50,36 L100,38 L150,30 L200,26 L250,18 L300,12" fill="none" stroke="#1fd18a" stroke-width="2.2" stroke-linecap="round"/></svg></div>
+      <div class="pr"><div><div class="k">قيمة الصفقة</div><div class="v num">450K</div></div><div class="roi">▲ إيراد 780K</div></div>
+    </article>
+    <article class="deal">
+      <div class="row1"><span class="chip">تجارة</span><span style="font-size:13px;color:var(--fg-mute)">الرياض</span></div>
+      <h3>متجر عطور إلكتروني</h3>
+      <div class="sp"><svg width="100%" height="100%" viewBox="0 0 300 52" preserveAspectRatio="none"><path d="M0,42 L50,38 L100,34 L150,32 L200,24 L250,20 L300,10" fill="none" stroke="#1fd18a" stroke-width="2.2" stroke-linecap="round"/></svg></div>
+      <div class="pr"><div><div class="k">قيمة الصفقة</div><div class="v num">220K</div></div><div class="roi">▲ ربح 110K</div></div>
+    </article>
+  </div>
+</section>
+
+<!-- cta -->
+<section class="wrap" style="padding-bottom:96px">
+  <div class="cta">
+    <h2>ابدأ رحلتك الاستثمارية اليوم.</h2>
+    <p>سواء كنت تبحث عن فرصة أو تعرض مشروعًا — حراج انفست يجمعكما في مكان واحد موثوق.</p>
+    <div class="row">
+      <a class="btn btn-p" href="#">أنشئ حسابك مجانًا</a>
+      <a class="btn btn-g" href="#">تصفّح الفرص</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <a class="brand" href="#">
+      <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true">
+        <path d="M15.5 3H7a4 4 0 0 0-4 4v8.5a4 4 0 0 0 1.17 2.83l9.5 9.5a3.2 3.2 0 0 0 4.53 0l8.83-8.83a3.2 3.2 0 0 0 0-4.53l-9.5-9.5A4 4 0 0 0 15.5 3Z" fill="#1fd18a"/>
+        <circle cx="9.5" cy="9.5" r="2.1" fill="#07110d"/>
+      </svg>
+      <span class="wm" style="font-size:18px">حراج<span style="color:var(--em)">انفست</span></span>
+    </a>
+    <div class="foot-links">
+      <a href="#">الشروط والأحكام</a>
+      <a href="#">سياسة الخصوصية</a>
+      <a href="#">تواصل معنا</a>
+    </div>
+    <span class="num" style="font-size:13px">© 2026 حراج انفست</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const c=document.getElementById('chart');if(!c)return;const ctx=c.getContext('2d');
+  const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function resize(){const r=c.getBoundingClientRect();c.width=r.width*devicePixelRatio;c.height=r.height*devicePixelRatio;ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);}
+  resize();window.addEventListener('resize',resize);
+  const pts=[0.10,0.16,0.13,0.22,0.28,0.24,0.34,0.42,0.38,0.52,0.6,0.72,0.86];
+  function draw(p){
+    const r=c.getBoundingClientRect();const W=r.width,H=r.height;ctx.clearRect(0,0,W,H);
+    const pad=10,n=pts.length;const stepX=(W-pad*2)/(n-1);
+    // grid
+    ctx.strokeStyle='rgba(120,220,175,.08)';ctx.lineWidth=1;
+    for(let i=0;i<4;i++){const y=pad+(H-pad*2)*i/3;ctx.beginPath();ctx.moveTo(pad,y);ctx.lineTo(W-pad,y);ctx.stroke();}
+    const shown=Math.max(2,Math.floor(n*p));
+    const coord=i=>[W-pad-stepX*i, H-pad-(H-pad*2)*pts[i]];  // RTL: start from right
+    // area
+    const grad=ctx.createLinearGradient(0,0,0,H);grad.addColorStop(0,'rgba(31,209,138,.35)');grad.addColorStop(1,'rgba(31,209,138,0)');
+    ctx.beginPath();ctx.moveTo(W-pad,H-pad);
+    for(let i=0;i<shown;i++){const[x,y]=coord(i);ctx.lineTo(x,y);}
+    ctx.lineTo(coord(shown-1)[0],H-pad);ctx.closePath();ctx.fillStyle=grad;ctx.fill();
+    // line
+    ctx.beginPath();for(let i=0;i<shown;i++){const[x,y]=coord(i);i?ctx.lineTo(x,y):ctx.moveTo(x,y);}
+    ctx.strokeStyle='#1fd18a';ctx.lineWidth=2.5;ctx.lineJoin='round';ctx.lineCap='round';ctx.shadowColor='rgba(31,209,138,.6)';ctx.shadowBlur=12;ctx.stroke();ctx.shadowBlur=0;
+    // endpoint
+    const[ex,ey]=coord(shown-1);ctx.beginPath();ctx.arc(ex,ey,4.5,0,7);ctx.fillStyle='#7ff5c4';ctx.fill();
+  }
+  if(reduce){draw(1);return;}
+  let t=0;const dur=1400;const t0=performance.now();
+  function anim(now){t=Math.min(1,(now-t0)/dur);const e=1-Math.pow(1-t,3);draw(e);if(t<1)requestAnimationFrame(anim);}
+  requestAnimationFrame(anim);
+})();
+</script>
+</body>
+</html>
